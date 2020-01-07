@@ -32,6 +32,25 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            // 加载css
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader'
+                ]
+            },
+            // 加载scss
+            // loader是有执行顺序的，从后往前执行
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     }
