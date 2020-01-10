@@ -1,7 +1,12 @@
 // node.js原生模块path
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 引用这个插件必须要使用对象结构
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    mode: 'development',
     // 指定打包入口
     entry: './index.js',
     // 指定打包后的文件配置
@@ -11,6 +16,7 @@ module.exports = {
         filename: 'index.js',
         path: path.resolve(__dirname, 'build')
     },
+    devtool: "cheap-module-eval-source-map",
     // 当webpack遇到非js模块无法打包时，需要loader依赖支持
     module: {
         rules: [
@@ -41,6 +47,12 @@ module.exports = {
                     'css-loader',
                     'postcss-loader'
                 ]
+                // 当使用 MiniCssExtractPlugin 时就不需要使用'style-loader'了
+                // use: [
+                //     MiniCssExtractPlugin.loader,
+                //     'css-loader',
+                //     'postcss-loader'
+                // ]
             },
             // 加载scss
             // loader是有执行顺序的，从后往前执行
@@ -53,5 +65,35 @@ module.exports = {
                 ]
             }
         ]
+    },
+    plugins: [
+        // 在我们执行打包后，在我们的打包目录里创建一个index.html模板，并将打包后的模块注入模板中
+        new HtmlWebpackPlugin({
+            template:'./index.html',
+            title: 'it is a title',
+            // filename: 'app.html'
+        }),
+        // 在每次打包执行之前，删除生成目录
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
+        }),
+        // 热更新
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    devServer: {
+        // 启动根目录
+        contentBase: './build',
+        //打包完成之后自动帮我们启动一个本地服务器，端口默认是8080，在浏览器里打开
+        open: true,
+        // 启动端口，可自定义
+        port: '',
+        proxy: {
+            '/api': {
+                target: 'http://localhost:9092'
+            }
+        },
+        // 开启热更新功能
+        hot: true
     }
 }
