@@ -1,9 +1,13 @@
-import './index.css'
+import a from './a'
+import b from './b'
 
-let btn = document.createEelement('button')
-btn.innerHTMl = '新增'
-document.body.appendChild(btn)
+b()
+a()
 
-btn.onClick = function () {
-    
+if(module.hot) {
+    module.hot.accept('./a',() => {
+        document.body.removeChild(document.getElementById('number'))
+        //重新执行一下这个模块的函数
+        a()
+    })
 }

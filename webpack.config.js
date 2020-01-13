@@ -1,9 +1,15 @@
 // node.js原生模块path
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 // 引用这个插件必须要使用对象结构
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// 使用热更新模块 HotModuleReplacementPlugin(webpack自带模块) 需要手动引入webpack
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
@@ -94,6 +100,10 @@ module.exports = {
             }
         },
         // 开启热更新功能
-        hot: true
+        hot: true,
+        // hotOnly针对css没作用
+        // 针对js不设置的状态下，改变了js后只要ctrl+s保存就会自动刷新，并更新数据
+        // 针对js设置的状态下，改变了js后必须要手动刷新浏览器，才会更新数据 
+        hotOnly: true
     }
 }
