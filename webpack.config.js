@@ -69,6 +69,37 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.js$/,
+                // 排除node_mpdules中的js模块
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader', 
+                        // options: {
+                            // presets: [
+                            //     [
+                            //         "@babel/preset-env",
+                            //         {
+                            //             // 按需加载
+                            //             useBuiltIns: 'usage'
+                            //         }
+                            //     ]
+                            // ],
+                            // plugins: [
+                            //     ["@babel/plugin-transform-runtime"],
+                            //     {
+                            //         absoluteRuntime: false,
+                            //         corejs: 2,
+                            //         helpers: true,
+                            //         regenerator: true,
+                            //         useESModules: false,
+                            //     }
+                            // ]
+                        // },
+                    }
+                ]
             }
         ]
     },
