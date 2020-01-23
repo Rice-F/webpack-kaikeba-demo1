@@ -6,6 +6,9 @@
                 // 按需加载
                 "useBuiltIns": "usage"
             }
+        ],
+        [
+            "@babel/preset-react"
         ]
     ]
 }

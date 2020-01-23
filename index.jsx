@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 
-class App extends Component {
+export default class Child extends Component {
     render () {
-        return <div>hello world</div>
+        return <div>hello webpack</div>
     }
 }
-
-ReactDom.render(<App/>, document.getElementById('app'));

@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 引用这个插件必须要使用对象结构
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // 使用热更新模块 HotModuleReplacementPlugin(webpack自带模块) 需要手动引入webpack
 const webpack = require('webpack');
@@ -113,9 +113,9 @@ module.exports = {
         }),
         // 在每次打包执行之前，删除生成目录
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: '[name].css'
-        }),
+        // new MiniCssExtractPlugin({
+        //     filename: '[name].css'
+        // }),
         // 热更新
         new webpack.HotModuleReplacementPlugin()
     ],

@@ -1,9 +1,10 @@
 // import '@babel/polyfill'
-// import a from './a'
+import {add} from './a'
 // import b from './b'
 
 // b()
 // a()
+add(1,2)
 
 // if(module.hot) {
 //     module.hot.accept('./a',() => {
@@ -13,9 +14,23 @@
 //     })
 // }
 
-let obj = {}
-const str = ''
-const arr = [ new Promise( () => {} ), new Promise( () => {} ) ]
-arr.map(item => {
-    console.log(item)
-})
+// let obj = {}
+// const str = ''
+// const arr = [ new Promise( () => {} ), new Promise( () => {} ) ]
+// arr.map(item => {
+//     console.log(item)
+// })
+
+// import React, { Component } from 'react'
+// import ReactDom from 'react-dom'
+// import Child from './index.jsx'
+
+// class App extends Component {
+//     render () {
+//         return <div>
+//             <Child />
+//         </div>
+//     }
+// }
+
+// ReactDom.render(<App/>, document.getElementById('app'));

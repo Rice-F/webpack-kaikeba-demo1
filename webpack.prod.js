@@ -12,7 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     // 指定打包入口
     entry: './index.js',
     // 指定打包后的文件配置
@@ -23,7 +23,7 @@ module.exports = {
         // path: path.resolve(__dirname, 'build')
         path: path.resolve(__dirname, './dist')
     },
-    devtool: "cheap-module-eval-source-map",
+    devtool: "cheap-module-source-map",
     // 当webpack遇到非js模块无法打包时，需要loader依赖支持
     module: {
         rules: [
@@ -113,34 +113,10 @@ module.exports = {
         }),
         // 在每次打包执行之前，删除生成目录
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: '[name].css'
-        }),
+        // new MiniCssExtractPlugin({
+        //     filename: '[name].css'
+        // }),
         // 热更新
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    devServer: {
-        // 启动根目录
-        // contentBase: './build',
-        contentBase: './dist',
-        //打包完成之后自动帮我们启动一个本地服务器，端口默认是8080，在浏览器里打开
-        open: true,
-        // 启动端口，可自定义
-        port: '',
-        proxy: {
-            '/api': {
-                target: 'http://localhost:9092'
-            }
-        },
-        // 开启热更新功能
-        hot: true,
-        // hotOnly针对css没作用
-        // 针对js不设置的状态下，改变了js后只要ctrl+s保存就会自动刷新，并更新数据
-        // 针对js设置的状态下，改变了js后必须要手动刷新浏览器，才会更新数据 
-        hotOnly: true
-    },
-    optimization: {
-        // 只是在开发环境需要配置，在生产环境把不需要配置
-        usedExports:true
-    }
+        // new webpack.HotModuleReplacementPlugin()
+    ]
 }
